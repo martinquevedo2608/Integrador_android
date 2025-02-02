@@ -2,6 +2,8 @@ package com.example.a2025a1_integrador2
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -24,5 +26,24 @@ class HomeActivity : AppCompatActivity() {
 
         Toast.makeText(this, "Hola, ${bundle?.getString("user")}", Toast.LENGTH_SHORT).show()
 
+        val toolbar: androidx.appcompat.widget.Toolbar = findViewById(R.id.toolbar)
+        setSupportActionBar(toolbar) // Configura la Toolbar como ActionBar
+
     }
+
+    override fun onCreateOptionsMenu(menu: Menu): Boolean {
+        menuInflater.inflate(R.menu.toolbar_menu, menu)
+        return true
+    }
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.mb_agregar_libro -> {
+                val intent: Intent = Intent(this, AgregarLibroActivity::class.java)
+                startActivity(intent)
+            }
+        else -> super.onOptionsItemSelected(item)
+        }
+        return true
+    }
+
 }

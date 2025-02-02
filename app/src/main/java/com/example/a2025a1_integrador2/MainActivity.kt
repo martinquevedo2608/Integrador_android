@@ -2,6 +2,7 @@ package com.example.a2025a1_integrador2
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.CheckBox
 import android.widget.EditText
@@ -31,8 +32,18 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+        val preferences = getSharedPreferences("appdata", MODE_PRIVATE)
+        val namePref = preferences.getString("name", "")
+        val passwordPref = preferences.getString("pass", "")
+
         et_user = findViewById(R.id.et_user)
         et_pass = findViewById(R.id.et_pass)
+
+        if(namePref != ""){
+            et_user.setText(namePref)
+            et_pass.setText(passwordPref)
+        }
+
         cb_recordarUsuario = findViewById(R.id.cb_recordarUsuario)
         bt_crearUsuario = findViewById(R.id.bt_crearUsuario)
         bt_crearUsuario.setOnClickListener {
@@ -48,6 +59,12 @@ class MainActivity : AppCompatActivity() {
                 finish()
             }
             else Toast.makeText(this, "COMPLETAR DATOS!", Toast.LENGTH_SHORT).show()
+
+            if(cb_recordarUsuario.isChecked){
+                val nombreUsuario = et_user.text.toString()
+                val password = et_pass.text.toString()
+                savePreferences(nombreUsuario, password)
+            }
         }
 
         tv_terminosYCondiciones = findViewById(R.id.tv_terminosYCondiciones)
@@ -56,6 +73,11 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+    }
 
+    private fun savePreferences(name: String, password: String) {
+        val preferences = getSharedPreferences("appdata", MODE_PRIVATE)
+        val saver = preferences.edit().putString("name", name).putString("pass", password)
+        saver.apply()
     }
 }
