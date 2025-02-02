@@ -8,11 +8,11 @@
     <style name="Theme._2025a1Integrador2" parent="Base.Theme._2025a1Integrador2" />
 
     <style name="Theme.Splash" parent="Theme.Material3.DayNight">
-        <!-- Fondo con imagen -->
-        <item name="android:windowSplashScreenBackground">@drawable/splash_background</item>
+        <!-- Color de fondo del SplashScreen -->
+        <item name="android:windowSplashScreenBackground">@color/f5f5f5</item>
 
-        <!-- Ícono (si querés agregar otro elemento)
-        <item name="android:windowSplashScreenAnimatedIcon">@drawable/splash_screen</item>-->
+        <!-- Ícono del SplashScreen (se mostrará dentro del círculo) -->
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/splash_screen</item>
     </style>
 
 </resources>
